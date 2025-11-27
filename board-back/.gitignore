@@ -37,9 +37,19 @@ out/
 .vscode/
 
 ### secret properties ###
+<<<<<<< HEAD
 application.properties
 application-dev.properties
 application-secret.properties
 **/application.properties
 **/application-dev.properties
 **/application-secret.properties
+=======
+<<<<<<< HEAD
+application-sercret.properties
+**/application-sercret.properties
+=======
+application-secret.properties
+**/application-secret.properties
+>>>>>>> e4bc9b2061611fca982e029fcec7bb698e6cf059
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

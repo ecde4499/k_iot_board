@@ -3,7 +3,11 @@ package org.example.boardback.dto.auth.request;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+<<<<<<< HEAD
 import org.example.boardback.common.enums.user.Gender;
+=======
+import org.example.boardback.common.enums.Gender;
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 import org.example.boardback.entity.file.FileInfo;
 import org.example.boardback.entity.user.User;
 

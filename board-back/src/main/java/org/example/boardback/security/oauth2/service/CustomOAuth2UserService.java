@@ -2,8 +2,13 @@ package org.example.boardback.security.oauth2.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+<<<<<<< HEAD
 import org.example.boardback.common.enums.user.AuthProvider;
 import org.example.boardback.common.enums.user.RoleType;
+=======
+import org.example.boardback.common.enums.AuthProvider;
+import org.example.boardback.common.enums.RoleType;
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 import org.example.boardback.entity.user.Role;
 import org.example.boardback.entity.user.User;
 import org.example.boardback.repository.user.RoleRepository;
@@ -29,6 +34,7 @@ import java.util.Map;
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+<<<<<<< HEAD
     // User 엔티티를 Spring Security에서 사용하는 UserPrincipal로 변환하는 매퍼
     private final UserPrincipalMapper userPrincipalMapper;
 
@@ -40,6 +46,18 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Override
     @Transactional
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+=======
+    // User 엔티티를 Spring Security 에서 사용하는 UserPrincipal로 변환하는 매퍼
+    private final UserPrincipalMapper userPrincipalMapper;
+
+    /**
+     * OAuth2 로그인 시 provider(google, kakao, naver)로부터 사용자 정보를 가져오ㅓ
+     *  , 프로젝트 서비스의 User 엔티티로 저장/업데이트 한 뒤
+     *  => 최종적으로, Spring Security가 이해할 수 있는 OAuth2User(UserPrincipal)형태로 리턴*/
+    @Override
+    @Transactional
+    public OAuth2User loadUser (OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
         // 1. provider로 부터 사용자 정보 가져오기
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
@@ -59,7 +77,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private AuthProvider mapProvider(String registrationId) {
         return switch (registrationId.toLowerCase()) {
+<<<<<<< HEAD
             case "google" -> AuthProvider.GOOGLE;
+=======
+            case "goole" -> AuthProvider.GOOGLE;
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
             case "kakao" -> AuthProvider.KAKAO;
             case "naver" -> AuthProvider.NAVER;
             default -> throw new IllegalArgumentException("지원하지 않는 provider: " + registrationId);
@@ -79,6 +101,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
      * provider + providerId를 기준으로 User를 조회하여
      *
      * 1) 이미 존재하면: 이름/이메일 등 프로필 정보를 최신 상태로 업데이트
+<<<<<<< HEAD
      * 2) 존재하지 않으면: 신규 소셜 로그인 User를 생성한 뒤 ROLE_USER 부여
      *
      * 최종적으로 User 엔티티 반환
@@ -86,6 +109,15 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Transactional
     protected User upsertUser(AuthProvider provider, OAuth2UserInfo userInfo) {
         // 소셜 서비으세서 제공하는 고유 사용자 ID (구글 sub, 카카오 id 등)
+=======
+     * 2) 존재하지 않으면: 신규 서셜 로그인 User를 생성한 뒤 ROLE_USER 부여
+     *
+     * 최적으로 User 엔티티 반환
+     * */
+    @Transactional
+    protected User upsertUser(AuthProvider provider, OAuth2UserInfo userInfo) {
+        // 소셜 서비스에서 제공하는 고유 사용자 ID (구글 sub, 카카오 id 등)
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
         String providerId = userInfo.getId();
 
         // 소셜에서 가져온 데이터 저장
@@ -93,8 +125,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         String name = userInfo.getName();
 
         // provider + providerId 조합으로 User 조회
+<<<<<<< HEAD
         // - 동일 provider 안에는 providerId가 유니크
         // - 다른 provider는 providerId가 같더라도 구분 가능
+=======
+        // - 동일 provider 안에느 providerId가 유니크
+        // - 다른 provide는 providerId가 같더라도 구분가능
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
         return userRepository.findByProviderAndProviderId(provider, providerId)
                 .map(user -> {
                     // 1) 이미 가입된 유저인 경우
@@ -103,6 +140,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                     return user;
                 })
                 .orElseGet(() -> {
+<<<<<<< HEAD
                     // 2) 처음 로그인하는 유저인 경우 -> 새 User 엔티티 생성
                     User newUser = User.createOauthUser(
                         provider,
@@ -117,6 +155,21 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                             .orElseThrow(() -> new IllegalArgumentException("ROLE_USER 가 DB에 없습니다."));
 
                     // 생성된 유저에게 ROLE_USER 권한 부여
+=======
+                    // 2) 처음 로그인 하는 유저인 경우 => 새 User 엔티티 생성
+                    User newUser = User.createOauthUser(
+                            provider,
+                            providerId,
+                            email,
+                            name
+                    );
+
+                    // 기본 권한 ROLE_USER를 DB 에서 조회
+                    Role userRole = roleRepository.findById(RoleType.USER)
+                            .orElseThrow(() -> new IllegalArgumentException("ROLE_USER 가 DB에 없습니다"));
+
+                    // 생성은 유저에게 ROLE_USER 권한 부여
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
                     newUser.grantRole(userRole);
 
                     return userRepository.save(newUser);

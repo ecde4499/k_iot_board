@@ -31,4 +31,8 @@ export interface MeResponse {
   profileImageUrl?: string;
   roles: string[];        // RoleType: USER / MANAGER / ADMIN
   provider: "LOCAL" | "GOOGLE" | "KAKAO" | "NAVER";
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

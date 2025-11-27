@@ -31,4 +31,8 @@ public class UserApi {
     // - 관리자가 사용자 비밀번호 초기화
     // - 비밀번호 완전 재설정
     public static final String PASSWORD = ID_ONLY + "/password";
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

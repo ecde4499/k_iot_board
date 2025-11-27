@@ -11,4 +11,8 @@ export interface UserCreateForm {
 export interface UserLoginForm {
   username: string;
   password: string;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

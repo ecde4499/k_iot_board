@@ -10,4 +10,8 @@ public class UserResponseDto {
     private String nickname;
     private String profileImageUrl;
     private String gender;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

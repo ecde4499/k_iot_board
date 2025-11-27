@@ -1,5 +1,6 @@
 import React from "react";
 
+<<<<<<< HEAD
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080";
 
 const FRONT_REDIRECT_URL = import.meta.env.VITE_OAUTH2_REDIRECT_URL ?? "http://localhost:5173/oauth2/callback";
@@ -12,16 +13,38 @@ const FRONT_REDIRECT_URL = import.meta.env.VITE_OAUTH2_REDIRECT_URL ?? "http://l
 export const SocialLoginButtons: React.FC = () => {
 
   //^ === EVENT HANDLER === //
+=======
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080";
+const FRONT_REDIRECT_URL =
+  import.meta.env.VITE_OAUTH2_REDIRECT_URL ??
+  "http://localhost:5173/oauth2/callback";
+
+/**
+ * 소셜 로그인 버튼
+ * - 클릭 시 Spring Security OAuth2 엔드포인트로 리다이렉트(이동)
+ * - 백엔드: /oauth2/authorization/{provider}
+ */
+export const SocialLoginButtons: React.FC = () => {
+  //* === EVENT HANDLER ===
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
   // 소셜 로그인 요청 함수
   const handleSocialLogin = (provider: "google" | "kakao" | "naver") => {
 
     // 실제 로그인 요청 URL 구성
+<<<<<<< HEAD
     // /oauth2/authorization/google?redirect_uri=http://localhost:5173/oauth2/callback
+=======
+    // /oauth2/authorization/google?redirect_url=http://localhost:5173/oauth2/callback
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     // : 실제 경로값을 URL에 포함할 경우 반드시 encodeURIComponent로 URI 값 변환
     const authUrl = `${API_BASE_URL}/oauth2/authorization/${provider}?redirect_uri=${encodeURIComponent(
       FRONT_REDIRECT_URL
     )}`;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     // 위 URL로 브라우저 이동 -> OAuth2 인증 시작
     window.location.href = authUrl;
   };

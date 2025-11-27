@@ -3,7 +3,10 @@ package org.example.boardback.security.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import lombok.RequiredArgsConstructor;
+=======
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 import lombok.extern.slf4j.Slf4j;
 import org.example.boardback.common.enums.ErrorCode;
 import org.example.boardback.dto.ResponseDto;
@@ -24,10 +27,16 @@ import java.io.IOException;
 // 401 전용 Entry Point
 @Slf4j
 @Component
+<<<<<<< HEAD
 @RequiredArgsConstructor
 public class JsonAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     private final ObjectMapper objectMapper;
+=======
+public class JsonAuthenticationEntryPoint implements AuthenticationEntryPoint {
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 
     @Override
     public void commence(

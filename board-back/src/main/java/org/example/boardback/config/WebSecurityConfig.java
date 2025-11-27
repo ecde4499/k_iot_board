@@ -4,7 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.example.boardback.security.filter.JwtAuthenticationFilter;
 import org.example.boardback.security.handler.JsonAccessDeniedHandler;
 import org.example.boardback.security.handler.JsonAuthenticationEntryPoint;
+<<<<<<< HEAD
 import org.example.boardback.security.oauth2.handler.OAuth2AuthenticationSuccessHandler;
+=======
+import org.example.boardback.security.oauth2.handler.Oauth2AuthenticationSuccessHandler;
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 import org.example.boardback.security.oauth2.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -82,6 +86,7 @@ public class WebSecurityConfig {
         return source;
     }
 
+<<<<<<< HEAD
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web -> web.ignoring().requestMatchers(
@@ -93,6 +98,11 @@ public class WebSecurityConfig {
     /* ============================ */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomOAuth2UserService customOAuth2UserService, OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler) throws Exception {
+=======
+    /* ============================ */
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomOAuth2UserService customOAuth2UserService, Oauth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler) throws Exception {
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 
         http
                 .csrf(AbstractHttpConfigurer::disable)
@@ -111,6 +121,7 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests(auth -> {
 
+<<<<<<< HEAD
             if (h2ConsoleEnabled) {
                 auth.requestMatchers("/h2-console/**").permitAll();
             }
@@ -157,10 +168,38 @@ public class WebSecurityConfig {
 //                        .successHandler(oAuth2AuthenticationSuccessHandler)
 //                );
                 .oauth2Login(oauth2 -> oauth2
+=======
+                    if (h2ConsoleEnabled) {
+                        auth.requestMatchers("/h2-console/**").permitAll();
+                    }
+
+                    auth
+                            // .permitAll(): 인증/인가 없이 모두 가능
+                            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                            .requestMatchers("/api/v1/auth/**").permitAll()         // 로그인, 회원가입 등 - 인증 서비스
+                            .requestMatchers(HttpMethod.GET, "/api/v1/boards/**").permitAll() // 게시판 조회 기능
+
+                            // 인증된 사용자만 사용 가능 (인가, 권한 X)
+                            // : HttpMethod는 선택값, URL 경로는 필수
+                            // .requestMatchers(HttpMethod.GET, "/api/v1/~~").authenticated()
+
+                            // 인가(특정 권한)된 사용자만 사용 가능
+                            // : 역할에 따른 분리
+                            // : HttpMethod는 선택값, URL 경로는 필수
+                            // .requestMatchers(HttpMethod.GET, "/api/v1/~~").hasAnyRole("A권한", "B권한")
+                            // .requestMatchers(HttpMethod.GET, "/api/v1/~~").hasRole("단일권한")
+
+                            .anyRequest().authenticated(); // 그 외에는 인증 필요
+                })
+                // OAuth2 로그인 설정
+                .oauth2Login(oauth2 -> oauth2
+                        // OAuth2 로그인 시 사용자 정보를 가져올 때 사용할 서비스 지정
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
                         .userInfoEndpoint(userinfo ->
                                 userinfo.userService(customOAuth2UserService)
                         )
                         .successHandler(oAuth2AuthenticationSuccessHandler)
+<<<<<<< HEAD
                         .failureHandler((request, response, exception) -> {
                             response.setStatus(401);
                             response.setContentType("application/json; charset=UTF-8");
@@ -168,6 +207,8 @@ public class WebSecurityConfig {
                                     "{\"success\":false, \"message\":\"OAuth2 로그인 실패\", \"code\":\"OAUTH2_FAILURE\"}"
                             );
                         })
+=======
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
                 );
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -175,10 +216,25 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+<<<<<<< HEAD
+=======
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web -> web.ignoring().requestMatchers(
+                "/favicon.ico",
+                "/error"
+        ));
+    }
+
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     private List<String> splitToList(String csv) {
         return Arrays.stream(csv.split(","))
                 .map(String::trim)
                 .filter(s -> !s.isBlank())
                 .toList();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

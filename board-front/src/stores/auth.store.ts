@@ -52,11 +52,19 @@ export const useAuthStore = create(
     // - 키 이름: AUTH_STORAGE (auth-storage)
     {
       name: AUTH_STORAGE, // 로컬 스토리지 키
+<<<<<<< HEAD
       onRehydrateStorage: () => () => {
         // persist가 localStorage 값 복원 완료 후 실행
           setTimeout(() => {
             useAuthStore.setState({ isInitialized: true });
           }, 0);
+=======
+      onRehydrateStorage: () => (state) => {
+        // persist가 localStorage 값 복원 완료 후 실행
+        if (state) {
+          state.isInitialized = true;
+        }
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
       }
     }
   )

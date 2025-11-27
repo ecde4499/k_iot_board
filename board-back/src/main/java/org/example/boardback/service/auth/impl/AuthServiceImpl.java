@@ -341,4 +341,8 @@ public class AuthServiceImpl implements AuthService {
     public ResponseDto<Void> verifyEmailCode(String email, String code) {
         return null;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

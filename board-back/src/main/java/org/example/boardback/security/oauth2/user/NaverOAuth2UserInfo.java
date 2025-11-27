@@ -2,8 +2,12 @@ package org.example.boardback.security.oauth2.user;
 
 import java.util.Map;
 
+<<<<<<< HEAD
 public class NaverOAuth2UserInfo extends OAuth2UserInfo {
 
+=======
+public class NaverOAuth2UserInfo extends OAuth2UserInfo{
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     public NaverOAuth2UserInfo(Map<String, Object> attributes) {
         super(attributes);
     }
@@ -24,7 +28,11 @@ public class NaverOAuth2UserInfo extends OAuth2UserInfo {
 
     @Override
     public String getName() {
+<<<<<<< HEAD
         return (String) getResponse().get("nickname");
+=======
+        return (String) getResponse().get("name");
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     }
 
     @Override

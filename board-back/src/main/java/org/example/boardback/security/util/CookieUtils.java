@@ -18,11 +18,19 @@ public class CookieUtils {
     }
 
     public static void addHttpOnlyCookie(
+<<<<<<< HEAD
         HttpServletResponse response,
         String name,
         String value,
         int maxAge,
         boolean secure
+=======
+            HttpServletResponse response,
+            String name,
+            String value,
+            int maxAge,
+            boolean secure
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     ) {
         ResponseCookie cookie = ResponseCookie.from(name, value)
                 .httpOnly(true)
@@ -44,4 +52,8 @@ public class CookieUtils {
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
