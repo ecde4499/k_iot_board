@@ -226,6 +226,10 @@ public class AuthServiceImpl implements AuthService {
             throw new BusinessException(ErrorCode.DUPLICATE_USER);
         }
 
+        if (!request.password().equals(request.confirmPassword())) {
+            throw new BusinessException(ErrorCode.PASSWORD_CONFIRM_MISMATCH);
+        }
+
         // 이메일 중복 체크
         if (userRepository.findByEmail(request.email()).isPresent()) {
             throw new BusinessException(ErrorCode.DUPLICATE_USER);
@@ -238,6 +242,8 @@ public class AuthServiceImpl implements AuthService {
                 .password(passwordEncoder.encode(request.password()))
                 .email(request.email())
                 .nickname(request.nickname())
+                .gender(request.gender())
+                .provider(request.provider())
                 .build();
 
         userRepository.save(newUser);
@@ -341,8 +347,4 @@ public class AuthServiceImpl implements AuthService {
     public ResponseDto<Void> verifyEmailCode(String email, String code) {
         return null;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

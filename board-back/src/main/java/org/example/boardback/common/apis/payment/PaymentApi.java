@@ -4,16 +4,13 @@ import org.example.boardback.common.apis.ApiBase;
 
 // 결제 관련 API 루트 경로
 public class PaymentApi {
-    private PaymentApi() {}
+    String ROOT = ApiBase.BASE + "/payments";
 
-    String ROOT = ApiBase.BASE + "/payment";
+    // 결제 생성: POST /api/v1/payments
 
-    // 결제 생성: POST /api/v1/payment
-
-    // 내 결제 목록: GET /api/v1/payment/me
+    // 내 결제 목록: GET /api/v1/payments/me
     String MY_LIST = "/me";
 
-    // 결제 환불 요청: POST /api/v1/payment/{paymentId}/refund
+    // 결제 환불 요청: POST /api/v1/payments/{paymentId}/refund
     String REFUND = "/{paymentId}/refund";
-
 }

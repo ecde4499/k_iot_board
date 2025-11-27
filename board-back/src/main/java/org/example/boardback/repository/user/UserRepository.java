@@ -2,17 +2,11 @@ package org.example.boardback.repository.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-<<<<<<< HEAD
 import org.example.boardback.common.enums.user.AuthProvider;
 import org.example.boardback.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-=======
-import org.example.boardback.common.enums.AuthProvider;
-import org.example.boardback.entity.user.User;
-import org.springframework.data.jpa.repository.JpaRepository;
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 
 import java.util.Optional;
 
@@ -20,7 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
     Optional<User> findByEmail(@NotBlank(message = "이메일은 필수입니다.") @Email(message = "이메일 형식이 올바르지 않습니다.") String email);
 
-<<<<<<< HEAD
     // OAuth2용
     Optional<User> findByProviderAndProviderId(AuthProvider provider, String providerId);
 
@@ -33,8 +26,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
         where u.username = :username
     """)
     Optional<User> findWithRolesByUsername(@Param("username") String username);
-=======
-    // OAuth2 용
-    Optional<User> findByProviderAndProviderId(AuthProvider provider, String providerId);
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 }

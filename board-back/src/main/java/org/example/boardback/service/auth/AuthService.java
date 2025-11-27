@@ -18,8 +18,4 @@ public interface AuthService {
     ResponseDto<Void> sendPasswordResetEmail(String email);
     ResponseDto<Void> sendVerifyCode(String email);
     ResponseDto<Void> verifyEmailCode(String email, String code);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

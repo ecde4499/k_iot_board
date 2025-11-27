@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class Payment extends BaseTimeEntity {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private Long id;
@@ -30,7 +31,7 @@ public class Payment extends BaseTimeEntity {
     @Column(nullable = false, length = 100)
     private String orderId;
 
-    // PG 에서 발급한 결제 키
+    // PG에서 발급한 결제 키
     // - Toss: paymentKey
     // - Kakao: tid(transaction id)
     @Column(nullable = false, length = 100, unique = true)
@@ -57,7 +58,7 @@ public class Payment extends BaseTimeEntity {
     @Column(nullable = false, length = 100)
     private String productName;
 
-    // - 결제 실패 시 PG 에서 전달한 실패 코드 / 메시지
+    // - 결제 실패 시 PG에서 전달한 실패 코드 / 메시지
     @Column(length = 50)
     private String failureCode;
 
@@ -73,9 +74,9 @@ public class Payment extends BaseTimeEntity {
     private LocalDateTime approvedAt;
     private LocalDateTime cancelledAt;
 
-    /**
-     * == 결제 상태 변경 로직
-     */
+    /*
+    * == 결제 상태 변경 로직
+    * */
     // 1) 결제 성공 처리
     public void markSuccess() {
         this.status = PaymentStatus.SUCCESS;

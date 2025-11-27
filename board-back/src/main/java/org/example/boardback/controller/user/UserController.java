@@ -7,12 +7,8 @@ import org.example.boardback.dto.user.request.UserProfileUpdateRequest;
 import org.example.boardback.dto.user.response.MeResponseDto;
 import org.example.boardback.dto.user.response.UserResponseDto;
 import org.example.boardback.entity.file.FileInfo;
-<<<<<<< HEAD
 import org.example.boardback.security.user.UserPrincipal;
-import org.example.boardback.service.file.ProfileServiceImpl;
-=======
 import org.example.boardback.service.impl.ProfileServiceImpl;
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 import org.example.boardback.service.user.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,15 +31,9 @@ public class UserController {
      */
     @GetMapping(UserApi.ME) // GET /api/v1/users/me
     public ResponseEntity<ResponseDto<MeResponseDto>> me(
-<<<<<<< HEAD
             @AuthenticationPrincipal UserPrincipal userPrincipal
     ) {
         ResponseDto<MeResponseDto> result = userService.getMe(userPrincipal.getId());
-=======
-            @RequestAttribute("userId") Long userId // JWT 필터에서 주입된다고 가정
-    ) {
-        ResponseDto<MeResponseDto> result = userService.getMe(userId);
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
         return ResponseEntity.status(result.getStatus()).body(result);
     }
 

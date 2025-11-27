@@ -51,8 +51,4 @@ public enum ErrorCode {
     public String toString() {
         return String.format("[%s] %s (HTTP %d)", code, logMessage, status.value());
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

@@ -1,15 +1,11 @@
 package org.example.boardback.service.user.impl;
 
-<<<<<<< HEAD
 import lombok.RequiredArgsConstructor;
 import org.example.boardback.common.enums.ErrorCode;
-=======
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 import org.example.boardback.dto.ResponseDto;
 import org.example.boardback.dto.user.request.UserProfileUpdateRequest;
 import org.example.boardback.dto.user.response.MeResponseDto;
 import org.example.boardback.dto.user.response.UserResponseDto;
-<<<<<<< HEAD
 import org.example.boardback.entity.user.Role;
 import org.example.boardback.entity.user.User;
 import org.example.boardback.exception.BusinessException;
@@ -42,16 +38,6 @@ public class UserServiceImpl implements UserService {
                 .build();
 
         return ResponseDto.success(dto);
-=======
-import org.example.boardback.service.user.UserService;
-import org.springframework.stereotype.Service;
-
-@Service
-public class UserServiceImpl implements UserService {
-    @Override
-    public ResponseDto<MeResponseDto> getMe(Long userId) {
-        return null;
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     }
 
     @Override
@@ -63,8 +49,4 @@ public class UserServiceImpl implements UserService {
     public ResponseDto<UserResponseDto> updateProfile(Long userId, UserProfileUpdateRequest request) {
         return null;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

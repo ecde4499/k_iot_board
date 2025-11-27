@@ -8,8 +8,4 @@ public record LoginResponseDto (
     public static LoginResponseDto of(String accessToken, long accessTokenExpiresInMillis) {
         return new LoginResponseDto(accessToken, accessTokenExpiresInMillis);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f

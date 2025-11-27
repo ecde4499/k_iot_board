@@ -52,19 +52,7 @@ public class UserPrincipal implements UserDetails, OAuth2User, Serializable {
         this.enabled = enabled;
     }
 
-<<<<<<< HEAD
     // OAuth2User 전용 필드
-=======
-    @Override public Collection<? extends GrantedAuthority> getAuthorities() { return authorities; }
-    @Override public String getPassword() { return password; }
-    @Override public String getUsername() { return username; }
-    @Override public boolean isAccountNonExpired() { return accountNonExpired; }
-    @Override public boolean isAccountNonLocked() { return accountNonLocked; }
-    @Override public boolean isCredentialsNonExpired() { return credentialsNonExpired; }
-    @Override public boolean isEnabled() { return enabled; }
-
-    // OAuth2USer 전용 필드
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     private Map<String, Object> attributes;
     private String name;
 
@@ -77,7 +65,6 @@ public class UserPrincipal implements UserDetails, OAuth2User, Serializable {
     public String getName() {
         return name;
     }
-<<<<<<< HEAD
 
     @Override public Collection<? extends GrantedAuthority> getAuthorities() { return authorities; }
     @Override public String getPassword() { return password; }
@@ -86,6 +73,4 @@ public class UserPrincipal implements UserDetails, OAuth2User, Serializable {
     @Override public boolean isAccountNonLocked() { return accountNonLocked; }
     @Override public boolean isCredentialsNonExpired() { return credentialsNonExpired; }
     @Override public boolean isEnabled() { return enabled; }
-=======
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 }

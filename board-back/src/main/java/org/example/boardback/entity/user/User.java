@@ -5,15 +5,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-<<<<<<< HEAD
 import org.example.boardback.common.enums.user.AuthProvider;
 import org.example.boardback.common.enums.user.Gender;
 import org.example.boardback.common.enums.user.RoleType;
-=======
-import org.example.boardback.common.enums.AuthProvider;
-import org.example.boardback.common.enums.Gender;
-import org.example.boardback.common.enums.RoleType;
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 import org.example.boardback.entity.base.BaseTimeEntity;
 import org.example.boardback.entity.file.FileInfo;
 
@@ -63,12 +57,8 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserRole> userRoles = new HashSet<>();
 
-    // OAuth2 필드
-<<<<<<< HEAD
+    // === OAuth2 필드 ===
     // 1) 가입 경로 (LOCAL / GOOGLE / KAKAO / NAVER)
-=======
-    // 1) 가입 경로(LOCAL / GOOGLE / KAKAO / NAVER)
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     @Enumerated(EnumType.STRING)
     @Column(name = "provider", length = 20, nullable = false)
     private AuthProvider provider;
@@ -77,7 +67,6 @@ public class User extends BaseTimeEntity {
     @Column(name = "provider_id", length = 100)
     private String providerId;
 
-<<<<<<< HEAD
     // 3) 이메일 인증 여부 (소셜은 대부분 true 처리)
     @Column(name = "email_verified", nullable = false)
     private boolean emailVerified;
@@ -96,22 +85,6 @@ public class User extends BaseTimeEntity {
             AuthProvider provider,
             String providerId,
             boolean emailVerified
-=======
-    // 3) 이메일 인증 여부 (소셜은 대부분 true 처라)
-    @Column(name = "email_verified", nullable = false)
-    private boolean emailVerified;
-
-    @Builder
-    private User(String username,
-                 String password,
-                 String email,
-                 String nickname,
-                 Gender gender,
-                 FileInfo profileFile,
-                 AuthProvider provider,
-                 String providerId,
-                 boolean emailVerified
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
     ) {
         this.username = username;
         this.password = password;
@@ -179,9 +152,8 @@ public class User extends BaseTimeEntity {
                 .map(Role::getName)
                 .collect(Collectors.toUnmodifiableSet());
     }
-<<<<<<< HEAD
 
-    // === 결제 시스템 편의 메서드 === //
+    // == 결제 시스템 편의 메서드 == //
     public void addPoint(Long amount) {
         if (this.pointBalance == null) this.pointBalance = 0L;
         this.pointBalance += amount;
@@ -191,6 +163,4 @@ public class User extends BaseTimeEntity {
         if (this.pointBalance == null) this.pointBalance = 0L;
         this.pointBalance -= amount;
     }
-=======
->>>>>>> a013a0241d4baf24e9419fc9fc515a716664b11f
 }

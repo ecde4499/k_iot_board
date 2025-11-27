@@ -2,7 +2,6 @@ package org.example.boardback.entity.payment;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.boardback.common.enums.payment.PaymentStatus;
 import org.example.boardback.common.enums.payment.RefundStatus;
 import org.example.boardback.entity.base.BaseTimeEntity;
 
@@ -17,6 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class PaymentRefund extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
@@ -35,12 +35,12 @@ public class PaymentRefund extends BaseTimeEntity {
     @Column(length = 255)
     private String reason;
 
-    // 환불 상태(REQUESTED => COMPLETED || FAILED
+    // 환불 상태(REQUESTED -> COMPLETED || FAILED
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 30)
     private RefundStatus status;
 
-    // 환불 실패 시 - 실패 정보 저장(code / message)
+    // 환불 실패 시 - 실패 정보 저장(code/message)
     @Column(length = 50)
     private String failureCode;
 
@@ -51,9 +51,9 @@ public class PaymentRefund extends BaseTimeEntity {
     private LocalDateTime requestedAt;
     private LocalDateTime completedAt;
 
-    /**
-     * == 환불 상태 변경 로직 ==
-     */
+    /*
+    * == 환불 상태 변경 로직 ==
+    * */
     public void markCompleted() {
         this.status = RefundStatus.COMPLETED;
         this.completedAt = LocalDateTime.now();
